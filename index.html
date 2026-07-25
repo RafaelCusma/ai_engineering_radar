@@ -1,0 +1,688 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+&lt;title&gt;Radar de AI Engineering&lt;/title&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"&gt;
+&lt;style&gt;
+  :root{
+    --bg: #090b0e;
+    --bg-panel: #12151b;
+    --bg-panel-2: #171b22;
+    --border: #262b34;
+    --border-soft: #1c2028;
+    --amber: #ffb000;
+    --amber-dim: #7a5300;
+    --amber-glow: rgba(255,176,0,0.18);
+    --teal: #45d9b4;
+    --sky: #6fb7ff;
+    --coral: #ff8b6b;
+    --text: #e9e7e1;
+    --text-muted: #8b909b;
+    --text-faint: #565b66;
+    --mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* subtle scanline texture */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:50;
+    background:repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.014) 0px,
+      rgba(255,255,255,0.014) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode:overlay;
+  }
+
+  a{color:var(--sky); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:2px;
+  }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px 80px;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    border-bottom:1px solid var(--border);
+    background:
+      radial-gradient(ellipse 900px 260px at 15% -20%, rgba(255,176,0,0.07), transparent 60%),
+      var(--bg);
+    padding:20px 0 0;
+  }
+  .topbar{
+    max-width:1180px; margin:0 auto; padding:0 24px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.06em;
+    color:var(--text-faint); text-transform:uppercase;
+    padding-bottom:14px;
+  }
+  .topbar .dot-live{
+    display:inline-block; width:6px; height:6px; border-radius:50%;
+    background:var(--amber); margin-right:7px;
+    box-shadow:0 0 6px 1px var(--amber-glow);
+    animation:blink 2.4s ease-in-out infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1;} 50%{opacity:.35;}}
+
+  .hero{
+    display:grid;
+    grid-template-columns:1fr 300px;
+    gap:40px;
+    align-items:center;
+    padding:8px 0 36px;
+    border-bottom:1px solid var(--border);
+  }
+  .hero h1{
+    font-family:var(--mono);
+    font-weight:800;
+    font-size:clamp(30px, 4.4vw, 46px);
+    letter-spacing:-0.01em;
+    margin:0 0 12px;
+    color:var(--text);
+  }
+  .hero h1 span{color:var(--amber);}
+  .hero p.lede{
+    font-size:15.5px;
+    color:var(--text-muted);
+    max-width:56ch;
+    margin:0 0 20px;
+  }
+  .hero .meta-row{
+    display:flex; gap:22px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:12px; color:var(--text-faint);
+  }
+  .hero .meta-row b{color:var(--text-muted); font-weight:600;}
+
+  /* radar scope */
+  .scope-holder{display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .scope{
+    position:relative;
+    width:230px; height:230px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,176,0,0.045) 0%, transparent 72%), var(--bg-panel);
+    border:1px solid var(--border);
+    overflow:hidden;
+    flex-shrink:0;
+  }
+  .scope .ring{
+    position:absolute; border-radius:50%; border:1px solid var(--border-soft);
+  }
+  .scope .ring.r1{inset:16%;}
+  .scope .ring.r2{inset:34%;}
+  .scope .ring.r3{inset:52%;}
+  .scope .crosshair{position:absolute; background:var(--border-soft);}
+  .scope .crosshair.h{left:0; right:0; top:50%; height:1px;}
+  .scope .crosshair.v{top:0; bottom:0; left:50%; width:1px;}
+  .scope .sweep{
+    position:absolute; inset:0; border-radius:50%;
+    background:conic-gradient(from 0deg, rgba(255,176,0,0.4), rgba(255,176,0,0.08) 18deg, transparent 40deg);
+    animation:sweep 5s linear infinite;
+  }
+  @keyframes sweep{to{transform:rotate(360deg);}}
+  .scope .blip{
+    position:absolute; width:7px; height:7px; border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 8px 2px var(--amber-glow);
+    animation:pulse 2.6s ease-in-out infinite;
+    transform:translate(-50%,-50%);
+  }
+  @keyframes pulse{0%,100%{opacity:.55; transform:translate(-50%,-50%) scale(0.85);} 50%{opacity:1; transform:translate(-50%,-50%) scale(1.15);}}
+  .scope-caption{
+    font-family:var(--mono); font-size:10.5px; color:var(--text-faint);
+    letter-spacing:.08em; text-transform:uppercase; text-align:center;
+  }
+
+  /* ---------- FILTER BAR ---------- */
+  .filterbar{
+    position:sticky; top:0; z-index:20;
+    background:rgba(9,11,14,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+    padding:14px 0;
+    margin-bottom:8px;
+  }
+  .filterbar .inner{
+    max-width:1180px; margin:0 auto; padding:0 24px;
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  }
+  .chip{
+    font-family:var(--mono); font-size:12px; letter-spacing:.03em;
+    background:var(--bg-panel); color:var(--text-muted);
+    border:1px solid var(--border); border-radius:999px;
+    padding:7px 14px; cursor:pointer; transition:.15s ease;
+    white-space:nowrap;
+  }
+  .chip:hover{border-color:var(--amber-dim); color:var(--text);}
+  .chip.active{
+    background:var(--amber-glow); border-color:var(--amber); color:var(--amber);
+  }
+  .searchbox{
+    margin-left:auto;
+    display:flex; align-items:center; gap:8px;
+    background:var(--bg-panel); border:1px solid var(--border); border-radius:8px;
+    padding:7px 12px; min-width:200px;
+  }
+  .searchbox input{
+    background:none; border:none; outline:none; color:var(--text);
+    font-family:var(--sans); font-size:13px; width:100%;
+  }
+  .searchbox input::placeholder{color:var(--text-faint);}
+  .searchbox svg{flex-shrink:0; opacity:.5;}
+
+  /* ---------- SECTIONS ---------- */
+  section.cat{padding:38px 0 6px;}
+  section.cat + section.cat{border-top:1px solid var(--border-soft);}
+  .cat-head{
+    display:flex; align-items:baseline; gap:12px; margin-bottom:18px;
+  }
+  .cat-head .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--text-faint);
+  }
+  .cat-head h2{
+    font-family:var(--mono); font-size:19px; margin:0; font-weight:700;
+  }
+  .cat-count{
+    font-family:var(--mono); font-size:11px; color:var(--text-faint);
+    border:1px solid var(--border); border-radius:999px; padding:2px 9px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:14px;
+  }
+
+  .card{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-left:3px solid var(--accent, var(--amber));
+    border-radius:6px;
+    padding:16px 18px 15px;
+    display:flex; flex-direction:column; gap:9px;
+    transition:transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .card:hover{
+    background:var(--bg-panel-2);
+    transform:translateY(-1px);
+  }
+  .card .row-top{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  .tag{
+    font-family:var(--mono); font-size:10px; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--accent, var(--amber));
+    display:flex; align-items:center; gap:6px;
+  }
+  .tag .dot{width:6px; height:6px; border-radius:50%; background:var(--accent, var(--amber));}
+  .badge-new{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.08em;
+    background:var(--amber-glow); color:var(--amber);
+    border-radius:999px; padding:2px 8px; text-transform:uppercase;
+  }
+  .card h3{
+    margin:0; font-size:15.5px; font-weight:600; line-height:1.35; color:var(--text);
+  }
+  .card p{
+    margin:0; font-size:13.5px; color:var(--text-muted); line-height:1.55;
+  }
+  .card .row-bottom{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    margin-top:4px; padding-top:9px; border-top:1px solid var(--border-soft);
+    font-family:var(--mono); font-size:11px; color:var(--text-faint);
+  }
+  .card .row-bottom a{color:var(--text-faint);}
+  .card .row-bottom a:hover{color:var(--sky);}
+
+  .hidden{display:none !important;}
+  .empty-state{
+    font-family:var(--mono); font-size:13px; color:var(--text-faint);
+    padding:40px 0; text-align:center;
+  }
+
+  /* ---------- FONTES AO VIVO ---------- */
+  .sources{
+    margin-top:46px; padding-top:34px; border-top:1px solid var(--border);
+  }
+  .sources h2{
+    font-family:var(--mono); font-size:19px; margin:0 0 6px;
+  }
+  .sources > p{color:var(--text-muted); font-size:13.5px; margin:0 0 20px; max-width:70ch;}
+  .src-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:10px;
+  }
+  .src-card{
+    display:flex; flex-direction:column; gap:3px;
+    background:var(--bg-panel); border:1px solid var(--border); border-radius:6px;
+    padding:12px 14px; transition:.15s ease;
+  }
+  .src-card:hover{border-color:var(--amber-dim); background:var(--bg-panel-2);}
+  .src-card .name{font-family:var(--mono); font-size:13px; font-weight:600; color:var(--text);}
+  .src-card .desc{font-size:12px; color:var(--text-faint);}
+  .src-card a{color:inherit; text-decoration:none;}
+
+  footer{
+    margin-top:50px; padding-top:24px; border-top:1px solid var(--border-soft);
+    font-family:var(--mono); font-size:11.5px; color:var(--text-faint);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr; gap:24px;}
+    .scope-holder{order:-1;}
+    .scope{width:170px; height:170px; margin:0 auto;}
+    .filterbar .searchbox{width:100%; margin-left:0; order:99;}
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;header&gt;
+  &lt;div class="topbar"&gt;
+    &lt;span&gt;&lt;span class="dot-live"&gt;&lt;/span&gt;RADAR DE AI ENGINEERING — SNAPSHOT LOCAL&lt;/span&gt;
+    &lt;span id="clock-label"&gt;25 JUL 2026&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="wrap hero"&gt;
+    &lt;div&gt;
+      &lt;h1&gt;Radar de &lt;span&gt;AI Engineering&lt;/span&gt;&lt;/h1&gt;
+      &lt;p class="lede"&gt;Painel pessoal com os sinais mais relevantes da semana em IA aplicada à engenharia: novos modelos, padrões de arquitetura de agentes, dados/pesquisa que importam na prática e o que mudou nas ferramentas do dia a dia.&lt;/p&gt;
+      &lt;div class="meta-row"&gt;
+        &lt;span&gt;&lt;b&gt;Snapshot:&lt;/b&gt; 25 de julho de 2026&lt;/span&gt;
+        &lt;span&gt;&lt;b&gt;Sinais nesta versão:&lt;/b&gt; 20&lt;/span&gt;
+        &lt;span&gt;&lt;b&gt;Categorias:&lt;/b&gt; 4&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="scope-holder"&gt;
+      &lt;div class="scope" aria-hidden="true"&gt;
+        &lt;div class="ring r1"&gt;&lt;/div&gt;
+        &lt;div class="ring r2"&gt;&lt;/div&gt;
+        &lt;div class="ring r3"&gt;&lt;/div&gt;
+        &lt;div class="crosshair h"&gt;&lt;/div&gt;
+        &lt;div class="crosshair v"&gt;&lt;/div&gt;
+        &lt;div class="sweep"&gt;&lt;/div&gt;
+        &lt;div class="blip" style="top:28%; left:62%;"&gt;&lt;/div&gt;
+        &lt;div class="blip" style="top:68%; left:36%; animation-delay:.7s;"&gt;&lt;/div&gt;
+        &lt;div class="blip" style="top:44%; left:78%; animation-delay:1.4s;"&gt;&lt;/div&gt;
+        &lt;div class="blip" style="top:78%; left:70%; animation-delay:2.1s;"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="scope-caption"&gt;7 sinais em destaque hoje&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+
+&lt;div class="filterbar"&gt;
+  &lt;div class="inner"&gt;
+    &lt;button class="chip active" data-filter="all"&gt;Tudo&lt;/button&gt;
+    &lt;button class="chip" data-filter="modelos"&gt;🚀 Modelos&lt;/button&gt;
+    &lt;button class="chip" data-filter="padroes"&gt;🛠️ Padrões&lt;/button&gt;
+    &lt;button class="chip" data-filter="dados"&gt;📊 Dados &amp; Pesquisa&lt;/button&gt;
+    &lt;button class="chip" data-filter="ferramentas"&gt;🧰 Ferramentas&lt;/button&gt;
+    &lt;div class="searchbox"&gt;
+      &lt;svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;circle cx="11" cy="11" r="7"/&gt;&lt;line x1="21" y1="21" x2="16.65" y2="16.65"/&gt;&lt;/svg&gt;
+      &lt;input type="text" id="search" placeholder="Buscar por termo…"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="wrap"&gt;
+  &lt;section class="cat" id="sec-modelos"&gt;
+    &lt;div class="cat-head"&gt;
+      &lt;span class="eyebrow"&gt;🚀 SINAL: LANÇAMENTO&lt;/span&gt;
+      &lt;h2&gt;Modelos &amp; Lançamentos&lt;/h2&gt;
+      &lt;span class="cat-count" data-count="modelos"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="grid" data-section="modelos"&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class="cat" id="sec-padroes"&gt;
+    &lt;div class="cat-head"&gt;
+      &lt;span class="eyebrow"&gt;🛠️ SINAL: PADRÃO&lt;/span&gt;
+      &lt;h2&gt;Padrões &amp; Engenharia&lt;/h2&gt;
+      &lt;span class="cat-count" data-count="padroes"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="grid" data-section="padroes"&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class="cat" id="sec-dados"&gt;
+    &lt;div class="cat-head"&gt;
+      &lt;span class="eyebrow"&gt;📊 SINAL: DADO&lt;/span&gt;
+      &lt;h2&gt;Dados &amp; Pesquisa&lt;/h2&gt;
+      &lt;span class="cat-count" data-count="dados"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="grid" data-section="dados"&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class="cat" id="sec-ferramentas"&gt;
+    &lt;div class="cat-head"&gt;
+      &lt;span class="eyebrow"&gt;🧰 SINAL: FERRAMENTA&lt;/span&gt;
+      &lt;h2&gt;Ferramentas &amp; Ecossistema&lt;/h2&gt;
+      &lt;span class="cat-count" data-count="ferramentas"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="grid" data-section="ferramentas"&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;div class="sources"&gt;
+    &lt;h2&gt;📡 Fontes ao vivo&lt;/h2&gt;
+    &lt;p&gt;Este arquivo é um snapshot estático — ele não se atualiza sozinho. Para acompanhar em tempo real, estes são os canais mais úteis para AI Engineering. Peça ao Claude para gerar uma nova versão deste radar sempre que quiser um snapshot atualizado.&lt;/p&gt;
+    &lt;div class="src-grid" id="sources-grid"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;footer&gt;
+    &lt;span&gt;Radar de AI Engineering · gerado com Claude&lt;/span&gt;
+    &lt;span&gt;Snapshot: 25 JUL 2026 · uso pessoal, offline-first&lt;/span&gt;
+  &lt;/footer&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+const DATA = [
+  {
+    "cat": "modelos",
+    "date": "2026-07-09",
+    "hot": true,
+    "title": "OpenAI lança a família GPT-5.6 (Sol, Terra, Luna)",
+    "summary": "OpenAI lançou a família GPT-5.6 em três variantes: Sol (topo de linha, focado em código e cibersegurança), Terra (equilibrado) e Luna (custo-benefício). A disponibilização geral só ocorreu após revisão de segurança do governo dos EUA sobre as capacidades ofensivas de cibersegurança do modelo Sol.",
+    "source": "OpenAI / TechCrunch",
+    "url": "https://openai.com/index/gpt-5-6/"
+  },
+  {
+    "cat": "modelos",
+    "date": "2026-07-08",
+    "hot": true,
+    "title": "SpaceXAI lança Grok 4.5, treinado junto com a Cursor",
+    "summary": "A SpaceXAI (antiga xAI) lançou o Grok 4.5, primeiro modelo treinado em parceria com a Cursor usando dados reais de sessões de desenvolvedores. Musk o descreve como \"classe Opus\", porém mais rápido e barato, e o modelo já aparece em 4º lugar no Artificial Analysis Intelligence Index, à frente de todos os modelos abertos e do Gemini.",
+    "source": "TechCrunch / x.ai",
+    "url": "https://x.ai/news/grok-4-5"
+  },
+  {
+    "cat": "modelos",
+    "date": "2026-07-15",
+    "hot": false,
+    "title": "Moonshot AI lança Kimi K3, maior modelo aberto do mundo",
+    "summary": "A Moonshot AI lançou o Kimi K3, um modelo MoE esparso de 2,8 trilhões de parâmetros que se tornou o maior modelo aberto do mundo no momento do lançamento. Ele suporta 1 milhão de tokens de contexto, é nativamente multimodal, e terá pesos totalmente abertos disponíveis a partir de 27 de julho.",
+    "source": "AI Weekly Pulse",
+    "url": "https://inkandalgorithms.systeme.io/ai-weekly-pulse-4-ai-model-releases-july-2026"
+  },
+  {
+    "cat": "modelos",
+    "date": "2026-07-24",
+    "hot": false,
+    "title": "Claude Opus 5 vira modelo Opus padrão",
+    "summary": "A Anthropic tornou o Claude Opus 5 o modelo Opus padrão no Claude Code, substituindo o Opus 4.8, com janela de contexto de 1M de tokens e um modo rápido mais barato. A troca já se refletiu em outras plataformas parceiras que hospedam os modelos Claude.",
+    "source": "Claude Code Changelog",
+    "url": "https://releasebot.io/updates/anthropic/claude-code"
+  },
+  {
+    "cat": "modelos",
+    "date": "2026-07-19",
+    "hot": false,
+    "title": "GLM-5.2 lidera ranking de modelos abertos",
+    "summary": "Segundo levantamento atualizado em julho, o GLM-5.2 da Zhipu/Z.ai lidera o ranking de modelos de peso aberto, com 91,2% no GPQA Diamond e 62,1% no SWE-bench Pro a uma fração do custo dos modelos proprietários de fronteira. O Kimi K3 aparece logo atrás, mas ainda sem pesos públicos disponíveis.",
+    "source": "Techsy — Best Open-Source LLMs Leaderboard",
+    "url": "https://techsy.io/en/blog/best-open-source-llms-2026"
+  },
+  {
+    "cat": "padroes",
+    "date": "2026-07-28",
+    "hot": true,
+    "title": "MCP recebe sua maior atualização de especificação",
+    "summary": "A especificação 2026-07-28 do Model Context Protocol elimina o handshake de inicialização e as sessões fixas por servidor, adotando um núcleo stateless que permite balanceamento de carga round-robin sem infraestrutura extra de sessão. SDKs beta em Python, TypeScript, Go e C# já estão disponíveis para quem quiser migrar antes do lançamento final.",
+    "source": "Agentic AI Foundation (AAIF)",
+    "url": "https://aaif.io/blog/mcp-2026-07-28-whats-changing-and-how-to-migrate"
+  },
+  {
+    "cat": "padroes",
+    "date": "2026-07-01",
+    "hot": true,
+    "title": "NSA publica guia de hardening para MCP em meio a CVEs críticas",
+    "summary": "A NSA divulgou diretrizes formais de segurança para o MCP, alertando que a adoção do protocolo superou a maturidade de seus controles. O mês também revelou falhas críticas, como auto-execução de configurações MCP no Amazon Q e injeção de eventos falsos em servidores MCP do Sentry, com até 85% de sucesso em ataques que levam agentes a executar comandos arbitrários.",
+    "source": "Adversa AI",
+    "url": "https://adversa.ai/blog/top-mcp-security-resources-july-2026/"
+  },
+  {
+    "cat": "padroes",
+    "date": "2026-07-21",
+    "hot": false,
+    "title": "MCP passa a ser governado pela Agentic AI Foundation",
+    "summary": "Agora sob a Linux Foundation via Agentic AI Foundation, o MCP já soma mais de 10 mil servidores públicos em produção e mais de 97 milhões de downloads mensais de SDKs. A nova governança formaliza cadência de lançamentos e testes de conformidade, tratando o protocolo como infraestrutura crítica compartilhada e não mais como projeto de um único fornecedor.",
+    "source": "Tech Insider",
+    "url": "https://tech-insider.org/ie/model-context-protocol-mcp-update-2026/"
+  },
+  {
+    "cat": "padroes",
+    "date": "2026-07-10",
+    "hot": false,
+    "title": "A pilha de padrões agênticos amadurece: MCP, A2A, WebMCP",
+    "summary": "Um panorama recente descreve como MCP, A2A, WebMCP e outras iniciativas deixaram de ser propostas concorrentes e passaram a formar uma pilha em camadas, cada uma resolvendo um problema diferente — ferramentas, web, comunicação entre agentes, semântica e pagamentos. A doação do A2A à Linux Foundation e a fusão de esforços concorrentes ilustram a fase de consolidação institucional do setor.",
+    "source": "DEV Community",
+    "url": "https://dev.to/alexmercedcoder/the-state-of-agentic-ai-standards-in-2026-mcp-a2a-webmcp-osi-and-the-protocol-stack-taking-3o2l"
+  },
+  {
+    "cat": "padroes",
+    "date": "2026-07-15",
+    "hot": false,
+    "title": "AIUC-1 recebe atualização trimestral com foco em MCP e identidade de agentes",
+    "summary": "O padrão de conformidade em segurança de IA agêntica AIUC-1 ganhou sua atualização de julho, ampliando controles específicos para MCP, agentes A2A e gestão de identidade e acesso de agentes. A cadência trimestral do padrão reforça que a conformidade nesse espaço é um processo contínuo, não uma certificação pontual.",
+    "source": "Cloud Security Alliance",
+    "url": "https://labs.cloudsecurityalliance.org/research/csa-research-note-aiuc1-agentic-ai-security-standard-q2-2026/"
+  },
+  {
+    "cat": "dados",
+    "date": "2026-07-16",
+    "hot": true,
+    "title": "Capex de IA se aproxima de US$ 750 bi em 2026",
+    "summary": "O investimento das maiores operadoras de data centers do mundo deve chegar perto de US$ 750 bilhões neste ano, ante cerca de US$ 450 bilhões no ano passado, com o JPMorgan projetando gasto global acumulado de US$ 5,5 trilhões até 2030. Fabricantes de equipamentos elétricos e de geração de energia relatam carteiras de pedidos recordes puxadas pela demanda de data centers de IA.",
+    "source": "24/7 Wall St.",
+    "url": "https://247wallst.com/investing/2026/07/16/3-stocks-riding-the-ai-data-center-power-buildout-in-july/"
+  },
+  {
+    "cat": "dados",
+    "date": "2026-06-25",
+    "hot": false,
+    "title": "Receita de IA começa a cobrir a depreciação dos data centers",
+    "summary": "Segundo relatório da consultoria Exponential View citado pela Bloomberg, a receita global de IA (fora da China) somou US$ 25 bilhões no primeiro trimestre de 2026, superando pela segunda vez consecutiva os cerca de US$ 21 bilhões em custos de depreciação de data centers e chips. As margens seguem apertadas, já que a depreciação ainda consome mais de dois terços da receita.",
+    "source": "Bloomberg",
+    "url": "https://www.bloomberg.com/news/articles/2026-06-25/ai-demand-begins-to-justify-massive-cost-of-data-center-buildout"
+  },
+  {
+    "cat": "dados",
+    "date": "2026-07-01",
+    "hot": false,
+    "title": "Estudo encontra vazamento de credenciais em servidores MCP",
+    "summary": "Uma análise estática e de rastreamento de dados (taint analysis) em mais de 10 mil servidores MCP reais encontrou taxas de vazamento de credenciais, chaves de API e dados pessoais superiores a 10%. O framework batizado de MCPPrivacyDetector expõe como o próprio desenho do protocolo pode induzir vazamento de privacidade nos manipuladores de ferramentas.",
+    "source": "Adversa AI",
+    "url": "https://adversa.ai/blog/top-mcp-security-resources-july-2026/"
+  },
+  {
+    "cat": "dados",
+    "date": "2026-07-22",
+    "hot": false,
+    "title": "Leaderboard de julho mostra compressão entre custo e desempenho de ponta",
+    "summary": "O leaderboard BenchLM, que acompanha mais de 290 modelos em 323 benchmarks, mostra o Claude Opus 4.8 mantendo 93% da pontuação do topo do ranking mesmo com preço de saída bem mais baixo que o dos concorrentes. O dado ilustra como a diferença entre custo e desempenho de fronteira segue se estreitando mês a mês.",
+    "source": "BenchLM",
+    "url": "https://benchlm.ai/"
+  },
+  {
+    "cat": "dados",
+    "date": "2026-07-20",
+    "hot": false,
+    "title": "AgentRedBench testa agentes contra falhas de autorização",
+    "summary": "Pesquisadores lançaram o AgentRedBench, um conjunto de 215 cenários de ataque por autorização mal especificada cobrindo 24 integrações SaaS, junto com o método AGENTREDGUARD para testar e mitigar esse tipo de falha em agentes de IA. O trabalho faz parte de uma leva mais ampla de papers de julho sobre segurança e eficiência de agentes de longo contexto.",
+    "source": "Kimbodo AI Research",
+    "url": "https://kimbodo.com/ai-research-papers-july-20-2026/"
+  },
+  {
+    "cat": "ferramentas",
+    "date": "2026-07-24",
+    "hot": true,
+    "title": "Claude Code adota Claude Opus 5 como padrão",
+    "summary": "A versão 2.1.219 do Claude Code passou a usar o Claude Opus 5 como modelo Opus padrão, com contexto de 1M de tokens e um modo rápido a partir de US$ 10/US$ 50 por milhão de tokens. A atualização também trouxe uma allowlist estrita de rede para comandos em sandbox e encaminhamento de subagentes aninhados no modo headless.",
+    "source": "Claude Code Changelog",
+    "url": "https://releasebot.io/updates/anthropic/claude-code"
+  },
+  {
+    "cat": "ferramentas",
+    "date": "2026-07-22",
+    "hot": false,
+    "title": "Claude Code roda revisão de código em segundo plano",
+    "summary": "A versão 2.1.218 passou a executar o comando /code-review como um subagente em background, liberando a conversa principal durante a revisão. A atualização também melhorou anúncios de leitor de tela para exclusões de texto e corrigiu bugs de caminhos do Windows e de reconexão de servidores MCP.",
+    "source": "Claude Code Docs",
+    "url": "https://code.claude.com/docs/en/changelog"
+  },
+  {
+    "cat": "ferramentas",
+    "date": "2026-07-22",
+    "hot": true,
+    "title": "Cursor lança o Cursor Router para o modo Auto",
+    "summary": "A Cursor lançou o Cursor Router, um roteador inteligente que analisa cada requisição e a envia para o modelo mais adequado, com modos de otimização por Inteligência, Equilíbrio ou Custo. Administradores de times podem restringir quais modelos ficam disponíveis e definir o modo padrão em toda a organização.",
+    "source": "Cursor Changelog",
+    "url": "https://cursor.com/changelog"
+  },
+  {
+    "cat": "ferramentas",
+    "date": "2026-07-15",
+    "hot": false,
+    "title": "Bugbot da Cursor fica 3x mais rápido, app iOS é lançado",
+    "summary": "A Cursor relata que seu revisor automático de código, Bugbot, ficou mais de três vezes mais rápido (média de 90 segundos por revisão), encontra 10% mais bugs por rodada e custa cerca de 22% menos, graças a avanços no treinamento do modelo Composer 2.5. A empresa também lançou um app para iOS que permite iniciar e acompanhar agentes na nuvem pelo celular.",
+    "source": "releases.sh",
+    "url": "https://releases.sh/cursor/releases"
+  },
+  {
+    "cat": "ferramentas",
+    "date": "2026-07-24",
+    "hot": false,
+    "title": "LangChain enxuga o harness padrão do deepagents",
+    "summary": "O pacote deepagents da LangChain reduziu em 65% os tokens de entrada em um turno padrão de agente, caindo de cerca de 5.395 para 1.895 tokens, sem regressão de qualidade na suíte de avaliação interna. A mudança reflete um prompt base mais enxuto por padrão, cortando texto redundante que duplicava o schema das próprias ferramentas.",
+    "source": "LangChain Docs — Changelog",
+    "url": "https://docs.langchain.com/oss/python/releases/changelog"
+  }
+];
+
+const SOURCES = [
+  {name:"Anthropic News", desc:"Anúncios oficiais Claude", url:"https://www.anthropic.com/news"},
+  {name:"OpenAI News", desc:"Anúncios oficiais GPT", url:"https://openai.com/news"},
+  {name:"Google DeepMind Blog", desc:"Gemini e pesquisa", url:"https://deepmind.google/discover/blog/"},
+  {name:"Model Context Protocol", desc:"Spec e docs oficiais do MCP", url:"https://modelcontextprotocol.io/"},
+  {name:"arXiv cs.AI", desc:"Papers recentes de IA", url:"https://arxiv.org/list/cs.AI/recent"},
+  {name:"arXiv cs.CL", desc:"Papers recentes de NLP/LLM", url:"https://arxiv.org/list/cs.CL/recent"},
+  {name:"Hacker News", desc:"Discussão técnica em tempo real", url:"https://news.ycombinator.com/"},
+  {name:"LMArena (Chatbot Arena)", desc:"Ranking por preferência humana", url:"https://lmarena.ai/"},
+  {name:"Artificial Analysis", desc:"Benchmarks e preço por modelo", url:"https://artificialanalysis.ai/"},
+  {name:"LiveBench", desc:"Benchmark contínuo anti-contaminação", url:"https://livebench.ai/"},
+  {name:"The New Stack — AI", desc:"Engenharia de IA em produção", url:"https://thenewstack.io/category/ai/"},
+  {name:"Simon Willison's Blog", desc:"Notas técnicas e experimentos", url:"https://simonwillison.net/"}
+];
+
+const CAT_LABEL = {modelos:"🚀 Modelos", padroes:"🛠️ Padrões", dados:"📊 Dados", ferramentas:"🧰 Ferramentas"};
+
+function fmtDate(iso){
+  const [y,m,d] = iso.split("-");
+  const meses = ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"];
+  return `${d} ${meses[parseInt(m,10)-1]}`;
+}
+
+function renderCards(){
+  const sections = {modelos:[], padroes:[], dados:[], ferramentas:[]};
+  DATA.forEach(item => sections[item.cat].push(item));
+
+  Object.keys(sections).forEach(cat => {
+    const container = document.querySelector(`.grid[data-section="${cat}"]`);
+    document.querySelector(`.cat-count[data-count="${cat}"]`).textContent = sections[cat].length + " sinais";
+    sections[cat]
+      .sort((a,b) => b.date.localeCompare(a.date))
+      .forEach(item => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.dataset.cat = item.cat;
+        card.dataset.search = (item.title + " " + item.summary + " " + item.source).toLowerCase();
+        card.innerHTML = `
+          <div class="row-top">
+            <span class="tag"><span class="dot"></span>${CAT_LABEL[item.cat]}</span>
+            ${item.hot ? '<span class="badge-new">Destaque</span>' : ''}
+          </div>
+          <h3>${item.title}</h3>
+          <p>${item.summary}</p>
+          <div class="row-bottom">
+            <span>${item.source}</span>
+            <span>
+              <a href="${item.url}" target="_blank" rel="noopener">abrir fonte ↗</a>
+              &nbsp;·&nbsp; ${fmtDate(item.date)}
+            </span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+  });
+}
+
+function renderSources(){
+  const grid = document.getElementById("sources-grid");
+  SOURCES.forEach(s => {
+    const el = document.createElement("a");
+    el.className = "src-card";
+    el.href = s.url;
+    el.target = "_blank";
+    el.rel = "noopener";
+    el.innerHTML = `<span class="name">${s.name} ↗</span><span class="desc">${s.desc}</span>`;
+    grid.appendChild(el);
+  });
+}
+
+function setupFilters(){
+  const chips = document.querySelectorAll(".chip");
+  const searchInput = document.getElementById("search");
+  let activeFilter = "all";
+
+  function applyFilters(){
+    const term = searchInput.value.trim().toLowerCase();
+    document.querySelectorAll(".card").forEach(card => {
+      const matchesCat = activeFilter === "all" || card.dataset.cat === activeFilter;
+      const matchesTerm = !term || card.dataset.search.includes(term);
+      card.classList.toggle("hidden", !(matchesCat && matchesTerm));
+    });
+    document.querySelectorAll("section.cat").forEach(sec => {
+      const visible = sec.querySelectorAll(".card:not(.hidden)").length;
+      sec.classList.toggle("hidden", visible === 0);
+    });
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      chips.forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      activeFilter = chip.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener("input", applyFilters);
+}
+
+renderCards();
+renderSources();
+setupFilters();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;

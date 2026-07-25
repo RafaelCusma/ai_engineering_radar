@@ -1,12 +1,12 @@
-&lt;!DOCTYPE html&gt;
-&lt;html lang="pt-BR"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-&lt;title&gt;Radar de AI Engineering&lt;/title&gt;
-&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
-&lt;link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"&gt;
-&lt;style&gt;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar de AI Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
   :root{
     --bg: #090b0e;
     --bg-panel: #12151b;
@@ -295,107 +295,107 @@
     .scope{width:170px; height:170px; margin:0 auto;}
     .filterbar .searchbox{width:100%; margin-left:0; order:99;}
   }
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
+</style>
+</head>
+<body>
 
-&lt;header&gt;
-  &lt;div class="topbar"&gt;
-    &lt;span&gt;&lt;span class="dot-live"&gt;&lt;/span&gt;RADAR DE AI ENGINEERING — SNAPSHOT LOCAL&lt;/span&gt;
-    &lt;span id="clock-label"&gt;25 JUL 2026&lt;/span&gt;
-  &lt;/div&gt;
-  &lt;div class="wrap hero"&gt;
-    &lt;div&gt;
-      &lt;h1&gt;Radar de &lt;span&gt;AI Engineering&lt;/span&gt;&lt;/h1&gt;
-      &lt;p class="lede"&gt;Painel pessoal com os sinais mais relevantes da semana em IA aplicada à engenharia: novos modelos, padrões de arquitetura de agentes, dados/pesquisa que importam na prática e o que mudou nas ferramentas do dia a dia.&lt;/p&gt;
-      &lt;div class="meta-row"&gt;
-        &lt;span&gt;&lt;b&gt;Snapshot:&lt;/b&gt; 25 de julho de 2026&lt;/span&gt;
-        &lt;span&gt;&lt;b&gt;Sinais nesta versão:&lt;/b&gt; 20&lt;/span&gt;
-        &lt;span&gt;&lt;b&gt;Categorias:&lt;/b&gt; 4&lt;/span&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="scope-holder"&gt;
-      &lt;div class="scope" aria-hidden="true"&gt;
-        &lt;div class="ring r1"&gt;&lt;/div&gt;
-        &lt;div class="ring r2"&gt;&lt;/div&gt;
-        &lt;div class="ring r3"&gt;&lt;/div&gt;
-        &lt;div class="crosshair h"&gt;&lt;/div&gt;
-        &lt;div class="crosshair v"&gt;&lt;/div&gt;
-        &lt;div class="sweep"&gt;&lt;/div&gt;
-        &lt;div class="blip" style="top:28%; left:62%;"&gt;&lt;/div&gt;
-        &lt;div class="blip" style="top:68%; left:36%; animation-delay:.7s;"&gt;&lt;/div&gt;
-        &lt;div class="blip" style="top:44%; left:78%; animation-delay:1.4s;"&gt;&lt;/div&gt;
-        &lt;div class="blip" style="top:78%; left:70%; animation-delay:2.1s;"&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class="scope-caption"&gt;7 sinais em destaque hoje&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/header&gt;
+<header>
+  <div class="topbar">
+    <span><span class="dot-live"></span>RADAR DE AI ENGINEERING — SNAPSHOT LOCAL</span>
+    <span id="clock-label">25 JUL 2026</span>
+  </div>
+  <div class="wrap hero">
+    <div>
+      <h1>Radar de <span>AI Engineering</span></h1>
+      <p class="lede">Painel pessoal com os sinais mais relevantes da semana em IA aplicada à engenharia: novos modelos, padrões de arquitetura de agentes, dados/pesquisa que importam na prática e o que mudou nas ferramentas do dia a dia.</p>
+      <div class="meta-row">
+        <span><b>Snapshot:</b> 25 de julho de 2026</span>
+        <span><b>Sinais nesta versão:</b> 20</span>
+        <span><b>Categorias:</b> 4</span>
+      </div>
+    </div>
+    <div class="scope-holder">
+      <div class="scope" aria-hidden="true">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="crosshair h"></div>
+        <div class="crosshair v"></div>
+        <div class="sweep"></div>
+        <div class="blip" style="top:28%; left:62%;"></div>
+        <div class="blip" style="top:68%; left:36%; animation-delay:.7s;"></div>
+        <div class="blip" style="top:44%; left:78%; animation-delay:1.4s;"></div>
+        <div class="blip" style="top:78%; left:70%; animation-delay:2.1s;"></div>
+      </div>
+      <div class="scope-caption">7 sinais em destaque hoje</div>
+    </div>
+  </div>
+</header>
 
-&lt;div class="filterbar"&gt;
-  &lt;div class="inner"&gt;
-    &lt;button class="chip active" data-filter="all"&gt;Tudo&lt;/button&gt;
-    &lt;button class="chip" data-filter="modelos"&gt;🚀 Modelos&lt;/button&gt;
-    &lt;button class="chip" data-filter="padroes"&gt;🛠️ Padrões&lt;/button&gt;
-    &lt;button class="chip" data-filter="dados"&gt;📊 Dados &amp; Pesquisa&lt;/button&gt;
-    &lt;button class="chip" data-filter="ferramentas"&gt;🧰 Ferramentas&lt;/button&gt;
-    &lt;div class="searchbox"&gt;
-      &lt;svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;circle cx="11" cy="11" r="7"/&gt;&lt;line x1="21" y1="21" x2="16.65" y2="16.65"/&gt;&lt;/svg&gt;
-      &lt;input type="text" id="search" placeholder="Buscar por termo…"&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+<div class="filterbar">
+  <div class="inner">
+    <button class="chip active" data-filter="all">Tudo</button>
+    <button class="chip" data-filter="modelos">🚀 Modelos</button>
+    <button class="chip" data-filter="padroes">🛠️ Padrões</button>
+    <button class="chip" data-filter="dados">📊 Dados &amp; Pesquisa</button>
+    <button class="chip" data-filter="ferramentas">🧰 Ferramentas</button>
+    <div class="searchbox">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search" placeholder="Buscar por termo…">
+    </div>
+  </div>
+</div>
 
-&lt;div class="wrap"&gt;
-  &lt;section class="cat" id="sec-modelos"&gt;
-    &lt;div class="cat-head"&gt;
-      &lt;span class="eyebrow"&gt;🚀 SINAL: LANÇAMENTO&lt;/span&gt;
-      &lt;h2&gt;Modelos &amp; Lançamentos&lt;/h2&gt;
-      &lt;span class="cat-count" data-count="modelos"&gt;&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;div class="grid" data-section="modelos"&gt;&lt;/div&gt;
-  &lt;/section&gt;
+<div class="wrap">
+  <section class="cat" id="sec-modelos">
+    <div class="cat-head">
+      <span class="eyebrow">🚀 SINAL: LANÇAMENTO</span>
+      <h2>Modelos &amp; Lançamentos</h2>
+      <span class="cat-count" data-count="modelos"></span>
+    </div>
+    <div class="grid" data-section="modelos"></div>
+  </section>
 
-  &lt;section class="cat" id="sec-padroes"&gt;
-    &lt;div class="cat-head"&gt;
-      &lt;span class="eyebrow"&gt;🛠️ SINAL: PADRÃO&lt;/span&gt;
-      &lt;h2&gt;Padrões &amp; Engenharia&lt;/h2&gt;
-      &lt;span class="cat-count" data-count="padroes"&gt;&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;div class="grid" data-section="padroes"&gt;&lt;/div&gt;
-  &lt;/section&gt;
+  <section class="cat" id="sec-padroes">
+    <div class="cat-head">
+      <span class="eyebrow">🛠️ SINAL: PADRÃO</span>
+      <h2>Padrões &amp; Engenharia</h2>
+      <span class="cat-count" data-count="padroes"></span>
+    </div>
+    <div class="grid" data-section="padroes"></div>
+  </section>
 
-  &lt;section class="cat" id="sec-dados"&gt;
-    &lt;div class="cat-head"&gt;
-      &lt;span class="eyebrow"&gt;📊 SINAL: DADO&lt;/span&gt;
-      &lt;h2&gt;Dados &amp; Pesquisa&lt;/h2&gt;
-      &lt;span class="cat-count" data-count="dados"&gt;&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;div class="grid" data-section="dados"&gt;&lt;/div&gt;
-  &lt;/section&gt;
+  <section class="cat" id="sec-dados">
+    <div class="cat-head">
+      <span class="eyebrow">📊 SINAL: DADO</span>
+      <h2>Dados &amp; Pesquisa</h2>
+      <span class="cat-count" data-count="dados"></span>
+    </div>
+    <div class="grid" data-section="dados"></div>
+  </section>
 
-  &lt;section class="cat" id="sec-ferramentas"&gt;
-    &lt;div class="cat-head"&gt;
-      &lt;span class="eyebrow"&gt;🧰 SINAL: FERRAMENTA&lt;/span&gt;
-      &lt;h2&gt;Ferramentas &amp; Ecossistema&lt;/h2&gt;
-      &lt;span class="cat-count" data-count="ferramentas"&gt;&lt;/span&gt;
-    &lt;/div&gt;
-    &lt;div class="grid" data-section="ferramentas"&gt;&lt;/div&gt;
-  &lt;/section&gt;
+  <section class="cat" id="sec-ferramentas">
+    <div class="cat-head">
+      <span class="eyebrow">🧰 SINAL: FERRAMENTA</span>
+      <h2>Ferramentas &amp; Ecossistema</h2>
+      <span class="cat-count" data-count="ferramentas"></span>
+    </div>
+    <div class="grid" data-section="ferramentas"></div>
+  </section>
 
-  &lt;div class="sources"&gt;
-    &lt;h2&gt;📡 Fontes ao vivo&lt;/h2&gt;
-    &lt;p&gt;Este arquivo é um snapshot estático — ele não se atualiza sozinho. Para acompanhar em tempo real, estes são os canais mais úteis para AI Engineering. Peça ao Claude para gerar uma nova versão deste radar sempre que quiser um snapshot atualizado.&lt;/p&gt;
-    &lt;div class="src-grid" id="sources-grid"&gt;&lt;/div&gt;
-  &lt;/div&gt;
+  <div class="sources">
+    <h2>📡 Fontes ao vivo</h2>
+    <p>Este arquivo é um snapshot estático — ele não se atualiza sozinho. Para acompanhar em tempo real, estes são os canais mais úteis para AI Engineering. Peça ao Claude para gerar uma nova versão deste radar sempre que quiser um snapshot atualizado.</p>
+    <div class="src-grid" id="sources-grid"></div>
+  </div>
 
-  &lt;footer&gt;
-    &lt;span&gt;Radar de AI Engineering · gerado com Claude&lt;/span&gt;
-    &lt;span&gt;Snapshot: 25 JUL 2026 · uso pessoal, offline-first&lt;/span&gt;
-  &lt;/footer&gt;
-&lt;/div&gt;
+  <footer>
+    <span>Radar de AI Engineering · gerado com Claude</span>
+    <span>Snapshot: 25 JUL 2026 · uso pessoal, offline-first</span>
+  </footer>
+</div>
 
-&lt;script&gt;
+<script>
 const DATA = [
   {
     "cat": "modelos",
@@ -682,7 +682,7 @@ function setupFilters(){
 renderCards();
 renderSources();
 setupFilters();
-&lt;/script&gt;
+</script>
 
-&lt;/body&gt;
-&lt;/html&gt;
+</body>
+</html>

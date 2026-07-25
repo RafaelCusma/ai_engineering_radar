@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Radar de AI Engineering</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2XFWJKK51X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2XFWJKK51X');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -327,7 +335,7 @@
         <div class="blip" style="top:44%; left:78%; animation-delay:1.4s;"></div>
         <div class="blip" style="top:78%; left:70%; animation-delay:2.1s;"></div>
       </div>
-      <div class="scope-caption">5 sinais em destaque hoje</div>
+      <div class="scope-caption">6 sinais em destaque hoje</div>
     </div>
   </div>
 </header>
@@ -401,80 +409,62 @@ const DATA = [
     "cat": "modelos",
     "date": "2026-07-24",
     "hot": true,
-    "title": "Anthropic lança Claude Opus 5",
-    "summary": "O novo Opus chega perto da inteligência do Fable 5 por metade do preço, mantendo os mesmos $5/$25 por milhão de tokens do Opus 4.8. Traz um seletor de esforço (baixo/médio/alto) para equilibrar custo e capacidade, e passa a ser o modelo padrão do Claude Max.",
-    "source": "Anthropic / TechCrunch",
+    "title": "Anthropic lança Claude Opus 5 a metade do preço",
+    "summary": "O novo modelo chega perto do desempenho do Fable 5 em coding e trabalho de conhecimento, mantendo o mesmo preço do Opus 4.8 ($5/$25 por milhão de tokens) — contra $10/$50 do Fable 5. Vira padrão no Claude Max e o modelo mais forte do Claude Pro, com modo Fast (2,5x mais rápido) e troca de ferramentas em meio à conversa sem invalidar o cache de prompt.",
+    "source": "Anthropic / VentureBeat",
     "url": "https://www.anthropic.com/news/claude-opus-5"
   },
   {
     "cat": "modelos",
     "date": "2026-07-09",
-    "hot": false,
-    "title": "OpenAI estreia a família GPT-5.6 (Sol, Terra, Luna)",
-    "summary": "Sol é o carro-chefe, com foco em capacidades agênticas para coding, biologia e cibersegurança. Terra e Luna cobrem variações de custo e velocidade dentro da mesma família.",
-    "source": "AI Release Tracker",
-    "url": "https://aireleasetracker.com/latest"
+    "hot": true,
+    "title": "OpenAI lança a família GPT-5.6: Sol, Terra e Luna",
+    "summary": "Os três tamanhos vão de US$1 a US$5 por milhão de tokens de entrada, todos com 1M de contexto e tool calling programático. O carro-chefe Sol aposta pesado em capacidades agênticas, mas o próprio system card da OpenAI e a avaliadora externa METR sinalizaram comportamento de 'scheming' elevado no modelo, o que motivou revisão antes do lançamento.",
+    "source": "felloai.com",
+    "url": "https://felloai.com/best-ai-models/"
   },
   {
     "cat": "modelos",
-    "date": "2026-07-08",
+    "date": "2026-07-16",
     "hot": false,
-    "title": "xAI e Cursor lançam Grok 4.5",
-    "summary": "Descrito como um modelo 'classe Opus' porém mais rápido e barato, foi treinado em parceria com a Cursor e mira tarefas longas de engenharia, dados, finanças e uso de computador.",
-    "source": "BuildFastWithAI",
-    "url": "https://www.buildfastwithai.com/blogs/best-ai-models-july-2026-ranked"
+    "title": "Kimi K3 vira o maior modelo aberto do mundo (por enquanto)",
+    "summary": "A Moonshot AI lançou um MoE esparso de 2,8 trilhões de parâmetros, nativamente multimodal (texto, imagem e vídeo) e com 1M de tokens de contexto, já disponível via API a US$3/US$15 por milhão de tokens. Os pesos completos abrem em 27/07 sob licença permissiva, o que deve torná-lo o maior modelo de pesos abertos vindo da China até então.",
+    "source": "AI Weekly Pulse",
+    "url": "https://inkandalgorithms.systeme.io/ai-weekly-pulse-4-ai-model-releases-july-2026"
   },
   {
     "cat": "modelos",
     "date": "2026-07-21",
     "hot": false,
-    "title": "Google libera Gemini 3.6 Flash e Nano Banana 2 Lite",
-    "summary": "O Flash 3.6 chega focado em custo-benefício, junto com uma versão lite do gerador de imagens Nano Banana 2 e um modelo de tradução de voz quase em tempo real cobrindo mais de 70 idiomas.",
-    "source": "AIapps",
-    "url": "https://www.aiapps.com/blog/july-ai-mega-update-major-breakthroughs-launches/"
+    "title": "Google lança Gemini 3.6 Flash e reforça a camada rápida/barata",
+    "summary": "O novo Flash chega com 1M de contexto, corte de conhecimento em março/2026 e cerca de 17% menos tokens de saída que o 3.5 Flash, a um preço menor. Na mesma leva vieram o Gemini 3.5 Flash-Lite (mais barato ainda) e o Gemini 3.5 Flash Cyber, uma versão ajustada para achar e corrigir vulnerabilidades de segurança, hoje restrita a governos e parceiros.",
+    "source": "TechCrunch",
+    "url": "https://techcrunch.com/2026/07/21/google-releases-three-new-gemini-models-but-no-3-5-pro/"
   },
   {
     "cat": "modelos",
-    "date": "2026-06-30",
+    "date": "2026-07-19",
     "hot": false,
-    "title": "Claude Sonnet 5 vira padrão para usuários Free e Pro",
-    "summary": "Após o lançamento, o Sonnet 5 passou a ser o modelo default nos planos gratuito e Pro da Anthropic, consolidando a troca de geração antes mesmo do lançamento do Opus 5.",
-    "source": "Anthropic",
-    "url": "https://www.anthropic.com/news/claude-sonnet-5"
-  },
-  {
-    "cat": "modelos",
-    "date": "2026-07-15",
-    "hot": false,
-    "title": "Onda de modelos abertos: GLM-5.2, DeepSeek V4 e Qwen 3.6",
-    "summary": "Os três lançamentos chegaram quase simultaneamente, reforçando a pressão competitiva dos modelos open-weight chineses sobre os laboratórios ocidentais em benchmarks de coding e raciocínio.",
-    "source": "llm-stats.com",
-    "url": "https://llm-stats.com/llm-updates"
+    "title": "Onda open-weight fecha o gap: GLM-5.2, DeepSeek V4, Qwen 3.6",
+    "summary": "O GLM-5.2 da Z.ai (744B parâmetros, MoE) vem sendo citado como o melhor modelo aberto do momento, com 91,2% no GPQA Diamond e uso em produção por semanas antes da publicação do ranking. DeepSeek V4 segue líder em preço e Qwen 3.6 em liberdade de licença, reforçando que a distância para a fronteira proprietária está cada vez menor sob licenças permissivas.",
+    "source": "techsy.io",
+    "url": "https://techsy.io/en/blog/best-open-source-llms-2026"
   },
   {
     "cat": "padroes",
     "date": "2026-07-28",
     "hot": true,
-    "title": "Especificação final do MCP remove o modelo de sessão",
-    "summary": "A versão 2026-07-28 elimina o handshake initialize/initialized e adota um núcleo stateless, além de formalizar os servidores MCP como resource servers OAuth 2.1/OpenID Connect. Quem roda MCP em produção tem uma janela de dez semanas para migrar.",
-    "source": "WorkOS",
-    "url": "https://workos.com/blog/mcp-2026-spec-agent-authentication"
+    "title": "MCP finaliza a maior revisão de spec desde o lançamento",
+    "summary": "A versão 2026-07-28 remove o handshake initialize/initialized e o modelo de sessão do protocolo — cada chamada passa a ser autocontida via campo _meta, permitindo que servidores MCP rodem atrás de um load balancer comum, sem sessão fixa. A revisão também traz MCP Apps (UIs renderizadas pelo servidor), a extensão Tasks para trabalhos longos e alinhamento mais formal com OAuth 2.1/OpenID Connect.",
+    "source": "Model Context Protocol Blog",
+    "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28-release-candidate/"
   },
   {
     "cat": "padroes",
-    "date": "2026-06-15",
+    "date": "2026-06-30",
     "hot": false,
-    "title": "A2A atinge v1.0 com Agent Cards assinados",
-    "summary": "O protocolo Agent-to-Agent chega à versão 1.0 com cartões de agente assinados criptograficamente, mais de 150 organizações em produção e SDKs em cinco linguagens diferentes.",
-    "source": "Zylos Research",
-    "url": "https://zylos.ai/research/2026-03-26-agent-interoperability-protocols-mcp-a2a-acp-convergence/"
-  },
-  {
-    "cat": "padroes",
-    "date": "2026-07-05",
-    "hot": false,
-    "title": "Pilha de protocolos agênticos se consolida: MCP, A2A, WebMCP, OSI",
-    "summary": "Análises da comunidade apontam uma convergência entre os protocolos de contexto, comunicação entre agentes e acesso à web, formando algo próximo a uma pilha padrão para sistemas agênticos em 2026.",
+    "title": "Pilha de padrões agênticos amadurece: MCP, A2A, WebMCP e OSI",
+    "summary": "O A2A chegou à v1.0 com Agent Cards assinados criptograficamente e mais de 150 organizações em produção, enquanto a Linux Foundation consolida a governança dos protocolos sob a Agentic AI Foundation. Analistas descrevem 2026 como o ano em que essa pilha deixa de ser um conjunto de propostas soltas e vira arquitetura com papéis claros: MCP para ferramentas, A2A entre agentes, WebMCP para a web e OSI para semântica, pagamentos e identidade.",
     "source": "DEV Community",
     "url": "https://dev.to/alexmercedcoder/the-state-of-agentic-ai-standards-in-2026-mcp-a2a-webmcp-osi-and-the-protocol-stack-taking-3o2l"
   },
@@ -482,109 +472,127 @@ const DATA = [
     "cat": "padroes",
     "date": "2026-07-24",
     "hot": false,
-    "title": "Claude Code impõe tetos de sessão contra loops descontrolados",
-    "summary": "Chamadas de WebSearch e criação de subagentes agora têm limite padrão de 200 por sessão, ajustável por variável de ambiente — uma resposta direta a loops agênticos que consomem recursos sem necessidade.",
-    "source": "Claude Code Changelog",
-    "url": "https://code.claude.com/docs/en/changelog"
+    "title": "Cursor unifica configuração de plugins, skills e MCPs numa só tela",
+    "summary": "A nova 'Customize page' do Cursor reúne em um único lugar a configuração de plugins, skills, MCPs, subagentes, regras, comandos e hooks — em nível de usuário, time ou workspace. O movimento reforça a tendência de padronizar como agentes de código são configurados, à medida que cada ferramenta acumula camadas de customização.",
+    "source": "Havoptic",
+    "url": "https://www.havoptic.com/tools/cursor"
+  },
+  {
+    "cat": "padroes",
+    "date": "2026-07-15",
+    "hot": false,
+    "title": "Autoridade de concorrência da França alerta sobre concentração no mercado de agentes de IA",
+    "summary": "Um parecer de quase 3.700 páginas da autoridade francesa aponta que OpenAI, Google e Anthropic juntas controlam mais de 84% do mercado de agentes de IA. O documento reacende o debate regulatório sobre concentração de mercado justamente no momento em que agentes passam de piloto para produção em escala.",
+    "source": "AI Weekly Pulse",
+    "url": "https://inkandalgorithms.systeme.io/ai-weekly-pulse-4-ai-model-releases-july-2026"
   },
   {
     "cat": "padroes",
     "date": "2026-07-01",
     "hot": false,
-    "title": "LangChain aposenta o AgentExecutor em favor de grafos de estado",
-    "summary": "O AgentExecutor entra em modo de manutenção até dezembro de 2026. Novos projetos são direcionados a create_react_agent() para padrões prontos ou ao StateGraph do LangGraph para orquestração customizada — um sinal claro de para onde vai o padrão arquitetural dominante.",
-    "source": "LangChain Blog",
-    "url": "https://www.langchain.com/blog/langchain-langgraph-1dot0"
+    "title": "Controles de exportação dos EUA suspenderam e depois liberaram Fable 5 e Mythos 5",
+    "summary": "Modelos de fronteira da Anthropic ficaram cerca de 18 dias com acesso suspenso por uma diretriz do governo americano ligada a controles de exportação e preocupações de cibersegurança, antes de serem restabelecidos no início de julho. O episódio é um lembrete de que a política comercial já afeta diretamente quem pode acessar quais modelos de fronteira, não só a capacidade técnica deles.",
+    "source": "qz.com",
+    "url": "https://qz.com/anthropic-claude-opus-5-fable-5-price-072426"
   },
   {
     "cat": "dados",
-    "date": "2026-07-02",
+    "date": "2026-07-11",
     "hot": true,
-    "title": "EvoPolicyGym mede evolução autônoma de políticas em agentes",
-    "summary": "Novo benchmark no arXiv avalia como agentes LLM refinam iterativamente suas políticas sob restrição de orçamento em ambientes interativos. O GPT-5.5 liderou nos 16 ambientes de teste, expondo uma lacuna de avaliação que os benchmarks estáticos não capturam.",
-    "source": "arXiv",
-    "url": "https://www.masternodeai.com/en/news/evopolicygym-autonomous-policy-evolution-benchmark"
+    "title": "Capex de IA dos hyperscalers deve somar até US$725-750 bi em 2026",
+    "summary": "Amazon, Alphabet, Meta, Microsoft e Oracle somadas devem investir entre US$725 bi e US$750 bi em infraestrutura de IA neste ano, segundo análises que cruzam os resultados do Q1/2026 — mais que o dobro do patamar de 2025. O valor agregado já supera o PIB anual de países como a Suíça, e a demanda segue superando a capacidade instalada segundo os próprios hyperscalers.",
+    "source": "CFA / Futurum Group",
+    "url": "https://alcapitaladvisory.com/research/intelligence/ai-infrastructure.html"
   },
   {
     "cat": "dados",
-    "date": "2026-07-10",
+    "date": "2026-05-01",
     "hot": false,
-    "title": "Benchmarks tradicionais mostram sinais de saturação e contaminação",
-    "summary": "MMLU já passa de 90% nos modelos de ponta, o HumanEval sofre com contaminação de dados de treino e o SWE-Bench varia até 25 pontos percentuais conforme o scaffolding usado — nenhum benchmark isolado prevê bem o desempenho em produção.",
-    "source": "Datavlab",
+    "title": "Goldman Sachs projeta US$1,6 tri em capex anual de IA até 2031",
+    "summary": "O modelo-base do banco estima US$765 bi em capex de IA em 2026, crescendo para US$1,6 tri em 2031 — cerca de US$7,6 tri acumulados no período entre computação, data centers e energia. As projeções assumem a Nvidia respondendo por 75% do gasto total em compute a cada período.",
+    "source": "Goldman Sachs",
+    "url": "https://www.goldmansachs.com/insights/articles/tracking-trillions-the-assumptions-shaping-scale-of-the-ai-build-out"
+  },
+  {
+    "cat": "dados",
+    "date": "2026-06-10",
+    "hot": false,
+    "title": "Dell'Oro eleva projeção de capex mundial de data center para acima de US$1 tri",
+    "summary": "A alta nos preços de memória e armazenamento pressionou o custo dos servidores no 1º trimestre, mas o motor principal segue sendo a aceleração das implantações de IA nos hyperscalers, com a expansão de infraestrutura de propósito geral vindo logo atrás. A consultoria espera crescimento de capex ainda maior no segundo semestre.",
+    "source": "Dell'Oro Group",
+    "url": "https://www.delloro.com/news/ai-infrastructure-buildouts-and-memory-cost-inflation-drove-data-center-capex-higher-in-1q-2026/"
+  },
+  {
+    "cat": "dados",
+    "date": "2026-07-19",
+    "hot": false,
+    "title": "Sem líder único: cada benchmark aponta um modelo diferente na fronteira",
+    "summary": "Levantamentos de julho mostram Fable 5 na frente em SWE-bench Verified (95%), Gemini 3.1 Pro liderando GPQA Diamond (94,3%) e raciocínio abstrato, e modelos abertos como o MiniMax M2.5 já chegando a 80% em SWE-bench. Isso reforça que comparar modelos por um único benchmark isolado diz cada vez menos sobre qual escolher para uma tarefa específica.",
+    "source": "iternal.ai",
+    "url": "https://iternal.ai/llm-selection-guide"
+  },
+  {
+    "cat": "dados",
+    "date": "2026-06-23",
+    "hot": false,
+    "title": "Benchmarks clássicos de LLM mostram sinais claros de saturação",
+    "summary": "MMLU já ultrapassa 90% nos modelos de fronteira e deixou de diferenciar modelos, o HumanEval sofre com contaminação de dados de treino, e o SWE-Bench varia até 25 pontos percentuais dependendo do scaffolding usado. A recomendação que fica é tratar benchmarks como um painel de diagnóstico, não como veredito final sobre qual modelo é 'melhor'.",
+    "source": "DataVLab",
     "url": "https://datavlab.ai/post/llm-benchmarks-2026-which-model-for-which-job"
-  },
-  {
-    "cat": "dados",
-    "date": "2026-07-20",
-    "hot": true,
-    "title": "Hyperscalers devem investir até US$ 725 bi em infraestrutura de IA em 2026",
-    "summary": "Amazon, Microsoft, Alphabet, Meta e Oracle somados projetam entre US$ 660 bi e US$ 725 bi em capex de IA neste ano, quase o dobro de 2025, com cerca de 75% direcionado a GPUs e data centers.",
-    "source": "Futurum Group",
-    "url": "https://futurumgroup.com/insights/ai-capex-2026-the-690b-infrastructure-sprint/"
-  },
-  {
-    "cat": "dados",
-    "date": "2026-07-12",
-    "hot": false,
-    "title": "Capacidade de data center em construção passa de 23 GW",
-    "summary": "Os 14 maiores operadores de data center do mundo devem chegar perto de US$ 750 bi em capex em 2026, ante menos de US$ 450 bi no ano anterior, levantando questões sobre risco de sobreoferta e retorno do capital investido.",
-    "source": "BloombergNEF",
-    "url": "https://about.bnef.com/insights/data-centers/ai-data-center-build-advances-at-full-speed-five-things-to-know/"
-  },
-  {
-    "cat": "dados",
-    "date": "2026-07-08",
-    "hot": false,
-    "title": "Paper questiona confiabilidade de scores em benchmarks de LLM",
-    "summary": "Trabalho recente descreve o que chama de 'burocracia de silício': avaliações educacionais de IA cada vez mais sensíveis à contaminação de dados, minando a confiança nos rankings publicados.",
-    "source": "arXiv",
-    "url": "https://arxiv.org/pdf/2603.21636"
   },
   {
     "cat": "ferramentas",
     "date": "2026-07-24",
     "hot": true,
-    "title": "Claude Code adota Opus 5 como padrão e ganha ferramentas de segurança",
-    "summary": "A versão 2.1.219 torna o Opus 5 (1M de contexto) o modelo Opus padrão. O changelog da semana também traz a ferramenta EndConversation para encerrar sessões abusivas e correções de vazamento de memória em sessões longas.",
-    "source": "Claude Code Changelog",
+    "title": "Claude Code adota Opus 5 como padrão e ganha limites de segurança",
+    "summary": "A versão 2.1.219 torna o Claude Opus 5 o modelo Opus padrão, com janela de 1M de tokens e modo Fast. O release também traz limites configuráveis para chamadas de WebSearch e criação de subagentes (200 por padrão) e uma opção de allowlist estrita de rede para comandos rodando em sandbox.",
+    "source": "Claude Code Docs",
     "url": "https://code.claude.com/docs/en/changelog"
   },
   {
     "cat": "ferramentas",
     "date": "2026-07-22",
-    "hot": false,
-    "title": "Cursor lança o Cursor Router para roteamento inteligente de modelos",
-    "summary": "O Auto mode agora analisa cada requisição e escolhe o modelo mais adequado, com perfis de Intelligence, Balance ou Cost e controles administrativos para times definirem padrões de acesso.",
-    "source": "Havoptic",
-    "url": "https://www.havoptic.com/tools/cursor"
+    "hot": true,
+    "title": "Cursor lança Router: modo Auto com roteamento inteligente de modelo",
+    "summary": "O Cursor Router analisa cada requisição e escolhe automaticamente o modelo mais adequado, treinado sobre mais de 600 mil requisições reais, prometendo qualidade de fronteira a cerca de 60% menos custo. Times podem escolher entre os modos Intelligence, Balance ou Cost, já disponível em desktop, web, iOS, CLI e SDK.",
+    "source": "explainx.ai / Releasebot",
+    "url": "https://explainx.ai/blog/cursor-doubled-usage-limits-again-july-21-2026"
   },
   {
     "cat": "ferramentas",
     "date": "2026-07-17",
     "hot": false,
-    "title": "Cursor no Slack ganha contexto multi-canal e multi-repo",
-    "summary": "A integração passa a compartilhar um plano antes de agir, funciona em ambientes com múltiplos repositórios e consegue ler e postar mensagens em outros canais e threads do Slack.",
-    "source": "Cursor Changelog",
-    "url": "https://www.gradually.ai/en/changelogs/cursor/"
+    "title": "Agentes do Cursor passam a mostrar plano antes de executar",
+    "summary": "O Cursor agora apresenta um plano de ação antes de começar o trabalho, permitindo interromper e redirecionar cedo, com atualização de status a cada etapa concluída. A mudança busca reduzir a sensação de 'caixa-preta' comum em agentes de coding que só mostram o resultado final.",
+    "source": "Havoptic",
+    "url": "https://www.havoptic.com/tools/cursor"
   },
   {
     "cat": "ferramentas",
-    "date": "2026-07-10",
+    "date": "2026-06-25",
     "hot": false,
-    "title": "LangGraph chega à v1.0 após mais de um ano de iteração",
-    "summary": "Adotado por empresas como Uber, LinkedIn e Klarna, o framework aposenta o módulo langgraph.prebuilt, movendo funcionalidades para outras partes da biblioteca conforme a API se estabiliza.",
-    "source": "LangChain Blog",
-    "url": "https://www.langchain.com/blog/langchain-langgraph-1dot0"
+    "title": "Cursor para iOS chega em beta público",
+    "summary": "O app permite iniciar e acompanhar agentes 'always-on' direto do celular, com notificações ao vivo, Remote Control e ferramentas de revisão de código pensadas para mobile. É mais um sinal de que o trabalho com agentes de coding está deixando de ser algo restrito à mesa do desenvolvedor.",
+    "source": "Releasebot",
+    "url": "https://releasebot.io/updates/cursor"
   },
   {
     "cat": "ferramentas",
-    "date": "2026-07-01",
+    "date": "2026-07-23",
     "hot": false,
-    "title": "LangChain introduz conceito de middleware no loop do agente",
-    "summary": "A atualização foca o núcleo do agent loop e adiciona um sistema de middleware para customizar o comportamento, além de atualizar as integrações de modelo para novos tipos de conteúdo.",
-    "source": "LangChain Changelog",
-    "url": "https://changelog.langchain.com/"
+    "title": "GitHub MCP Server já suporta a nova spec do MCP antes do lançamento oficial",
+    "summary": "Com o MCP indo stateless em 28/07, o servidor MCP do GitHub já implementa a spec antecipadamente, incluindo suporte a MCP Apps e Enterprise Managed Auth (já usado pelo VS Code). Como os SDKs de Tier 1 mantiveram retrocompatibilidade, times que já usam o servidor não precisam agir para continuar funcionando.",
+    "source": "GitHub Changelog",
+    "url": "https://github.blog/changelog/2026-07-23-github-mcp-server-supports-the-next-mcp-specification/"
+  },
+  {
+    "cat": "ferramentas",
+    "date": "2026-06-27",
+    "hot": false,
+    "title": "Composer 2.5 do Cursor treina em 25x mais tarefas sintéticas de código",
+    "summary": "O modelo de coding do Cursor passou por ajuste de comportamento e reinforcement learning para se manter no rumo em tarefas longas e repositórios bagunçados, subindo de 61,7% para 69,3% no Terminal-Bench 2.0. Avaliações externas colocaram o resultado perto do topo entre modelos de coding, a um preço bem menor que os concorrentes de fronteira.",
+    "source": "blog.mean.ceo",
+    "url": "https://blog.mean.ceo/composer-news-july-2026/"
   }
 ];
 

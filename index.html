@@ -310,15 +310,15 @@
 <header>
   <div class="topbar">
     <span><span class="dot-live"></span>RADAR DE AI ENGINEERING — SNAPSHOT LOCAL</span>
-    <span id="clock-label">22 SET 2026</span>
+    <span id="clock-label">30 SET 2026</span>
   </div>
   <div class="wrap hero">
     <div>
       <h1>Radar de <span>AI Engineering</span></h1>
       <p class="lede">Painel pessoal com os sinais mais relevantes da semana em IA aplicada à engenharia: novos modelos, padrões de arquitetura de agentes, dados/pesquisa que importam na prática e o que mudou nas ferramentas do dia a dia.</p>
       <div class="meta-row">
-        <span><b>Snapshot:</b> 22 de setembro de 2026</span>
-        <span><b>Sinais nesta versão:</b> 20</span>
+        <span><b>Snapshot:</b> 30 de setembro de 2026</span>
+        <span><b>Sinais nesta versão:</b> 18</span>
         <span><b>Categorias:</b> 4</span>
       </div>
     </div>
@@ -335,7 +335,7 @@
         <div class="blip" style="top:44%; left:78%; animation-delay:1.4s;"></div>
         <div class="blip" style="top:78%; left:70%; animation-delay:2.1s;"></div>
       </div>
-      <div class="scope-caption">4 sinais em destaque hoje</div>
+      <div class="scope-caption">6 sinais em destaque hoje</div>
     </div>
   </div>
 </header>
@@ -399,7 +399,7 @@
 
   <footer>
     <span>Radar de AI Engineering · gerado com Claude</span>
-    <span>Snapshot: 22 SET 2026 · uso pessoal, offline-first</span>
+    <span>Snapshot: 30 SET 2026 · uso pessoal, offline-first</span>
   </footer>
 </div>
 
@@ -407,183 +407,165 @@
 const DATA = [
   {
     "cat": "modelos",
-    "date": "2026-09-04",
+    "date": "2026-09-28",
     "hot": true,
-    "title": "OpenAI lança GPT-6 Astra",
-    "summary": "A OpenAI apresentou o GPT-6 Astra como seu modelo mais avançado até agora, com ganhos fortes em uso de computador (47% mais rápido em tarefas automatizadas), engenharia de software e pesquisa científica — atingiu 98% no FrontierMath Tier 4. O rollout começou para organizações selecionadas, chegando depois a planos pagos do ChatGPT e à API.",
-    "source": "OpenAI",
-    "url": "https://openai.com/index/gpt-6-astra/"
+    "title": "Claude Sonnet 5.5 chega",
+    "summary": "A Anthropic lançou o Sonnet 5.5 em 28/09, com janela de 1M de contexto, já adotado como modelo padrão no Claude Code.",
+    "source": "Stationx",
+    "url": "https://app.stationx.net/articles/claude-code-september-2026"
+  },
+  {
+    "cat": "modelos",
+    "date": "2026-09-22",
+    "hot": true,
+    "title": "Claude Opus 5.5 e GPT-6 Luna/Sol no mesmo dia",
+    "summary": "Anthropic e OpenAI soltaram seus novos modelos de topo em 22/09 (Opus 5.5; GPT-6 Luna e Sol), esquentando a disputa na camada de modelos de fronteira.",
+    "source": "Digital Applied",
+    "url": "https://www.digitalapplied.com/blog/ai-model-releases-september-2026-tracker"
   },
   {
     "cat": "modelos",
     "date": "2026-09-21",
     "hot": false,
-    "title": "xAI libera Grok 4.7 com 2,1 trilhões de parâmetros",
-    "summary": "O Grok 4.7 chegou 40% maior que o Grok 4.6, com treinamento suplementar usando dados da SpaceX (telemetria de satélites e logs de engenharia). Em benchmarks de código fica na faixa intermediária, atrás do GPT-6 Astra e do Claude Fable 5.1, mas mantém preço competitivo de US$ 2/US$ 6 por milhão de tokens.",
-    "source": "Decrypt",
-    "url": "https://decrypt.co/378824/xai-launches-grok-4-7"
+    "title": "Xiaomi MiMo V2.6 Pro e flash",
+    "summary": "A Xiaomi publicou duas variantes do MiMo V2.6, uma maior e outra rápida, ampliando as opções de modelos vindos da China.",
+    "source": "LLM Gateway",
+    "url": "https://llmgateway.io/timeline"
   },
   {
     "cat": "modelos",
-    "date": "2026-09-11",
-    "hot": false,
-    "title": "Moonshot AI expande o Kimi K2.8 Preview",
-    "summary": "A Moonshot AI concluiu o rollout completo do Kimi K2.8 Preview no Kimi Code e no Kimi Work, com desempenho geral se aproximando do futuro K3. O modelo reforça a estratégia chinesa de lançar versões intermediárias frequentes entre gerações principais.",
-    "source": "KuCoin News",
-    "url": "https://www.kucoin.com/news/flash/moonshot-kimi-k2-8-preview-model-fully-launched-performance-near-k3"
-  },
-  {
-    "cat": "modelos",
-    "date": "2026-09-10",
-    "hot": false,
-    "title": "DeepSeek-V4.1-Flash supera o próprio topo de linha em eficiência",
-    "summary": "A DeepSeek lançou o V4.1-Flash como modelo mais rápido e barato, afirmando que ele supera o flagship V4-Pro em parte dos benchmarks internos. Reforça a corrida por variantes 'flash' otimizadas para custo entre os laboratórios chineses.",
-    "source": "SiliconANGLE",
-    "url": "https://siliconangle.com/2026/09/10/deepseek-releases-v4-1-flash-says-it-outperforms-flagship-v4-pro/"
-  },
-  {
-    "cat": "modelos",
-    "date": "2026-09-22",
-    "hot": false,
-    "title": "Xiaomi abre o código do MiMo-V2.6 Pro e Flash",
-    "summary": "A Xiaomi lançou a família MiMo-V2.6 em open weights, com o Pro estreando como o modelo aberto mais forte do mundo em índices de inteligência de terceiros, graças a escala maior de reinforcement learning. O Flash mira custo baixo mantendo boa parte da performance.",
-    "source": "VentureBeat",
-    "url": "https://venturebeat.com/technology/better-than-deepseek-xiaomis-mimo-v2-6-pro-debuts-as-the-top-open-weights-model-in-the-world-alongside-cheaper-v2-6-flash"
-  },
-  {
-    "cat": "padroes",
-    "date": "2026-09-15",
-    "hot": false,
-    "title": "A pilha de protocolos agênticos (MCP, A2A, WebMCP) ganha forma",
-    "summary": "Uma análise detalhada mapeia como MCP, A2A e o emergente WebMCP estão se consolidando em camadas complementares — parecido com um modelo OSI para agentes — em vez de competirem entre si. MCP domina integração de ferramentas, A2A cobre comunicação entre agentes, e WebMCP mira exposição de capacidades direto no navegador.",
-    "source": "AM Data Lakehouse (Substack)",
-    "url": "https://amdatalakehouse.substack.com/p/the-state-of-agentic-ai-standards"
-  },
-  {
-    "cat": "padroes",
-    "date": "2026-09-10",
-    "hot": true,
-    "title": "Cursor lança Projects: agente coordenador delega para subagentes",
-    "summary": "O Cursor entrou em beta com 'Projects', um padrão onde um agente coordenador planeja e delega trabalho para vários subagentes sem escrever código diretamente. A execução roda na nuvem (continua mesmo com o notebook fechado) e o contexto compartilhado cresce à medida que os agentes aprendem a base de código.",
-    "source": "Cursor Changelog",
-    "url": "https://cursor.com/changelog"
-  },
-  {
-    "cat": "padroes",
-    "date": "2026-09-18",
-    "hot": false,
-    "title": "Claude Code adota AGENTS.md como padrão de fallback",
-    "summary": "O Claude Code passou a reconhecer o arquivo AGENTS.md como alternativa quando não há CLAUDE.md, alinhando-se a um formato de instruções de projeto que outras ferramentas agênticas também vêm adotando — um sinal de convergência em torno de um padrão comum entre editores e CLIs.",
-    "source": "Claude Code Changelog",
-    "url": "https://code.claude.com/docs/en/changelog"
-  },
-  {
-    "cat": "padroes",
     "date": "2026-09-02",
     "hot": false,
-    "title": "Cursor adiciona máquinas self-hosted para execução local de agentes",
-    "summary": "A nova opção de infraestrutura self-hosted do Cursor mantém a execução de ferramentas dentro da rede do próprio time, com agendamento dinâmico de pool e suporte a AWS Lambda, Vercel e Modal. É um padrão de segurança que outras plataformas agênticas devem seguir para lidar com código e segredos sensíveis.",
-    "source": "Cursor Changelog",
-    "url": "https://cursor.com/changelog"
+    "title": "Gemini 3.8 Flash",
+    "summary": "O Google liberou o Gemini 3.8 Flash no início do mês, focado em baixa latência e custo.",
+    "source": "LLM Reference",
+    "url": "https://www.llmreference.com/changelog/2026-09"
+  },
+  {
+    "cat": "modelos",
+    "date": "2026-09-11",
+    "hot": false,
+    "title": "Sakana Fugu Ultra v2.0",
+    "summary": "A Sakana AI lançou o Fugu Ultra v2.0, parte de um mês com mais de 25 modelos novos de 16 provedores.",
+    "source": "Digital Applied",
+    "url": "https://www.digitalapplied.com/blog/ai-model-releases-september-2026-tracker"
   },
   {
     "cat": "padroes",
-    "date": "2026-09-17",
-    "hot": false,
-    "title": "Claude Code formaliza instalação de plugins via marketplace",
-    "summary": "O comando `/plugin install <plugin> --marketplace <source>` chegou ao Claude Code, junto da sincronização de skills e plugins da claude.ai para sessões de terminal — um padrão de distribuição e versionamento de extensões que se espalha entre ferramentas de coding agêntico.",
-    "source": "Claude Code Changelog",
-    "url": "https://code.claude.com/docs/en/changelog"
+    "date": "2026-09-05",
+    "hot": true,
+    "title": "Pilha de protocolos de agentes se consolida",
+    "summary": "MCP cuida do acesso a ferramentas, A2A da comunicação entre agentes e WebMCP da web; camadas de identidade, pagamento e segurança começam a se encaixar.",
+    "source": "Data Lakehouse Hub",
+    "url": "https://datalakehousehub.com/blog/state-of-agentic-ai-standards-2026/"
   },
   {
-    "cat": "dados",
-    "date": "2026-09-09",
+    "cat": "padroes",
+    "date": "2026-04-15",
     "hot": false,
-    "title": "Paper Φ-Bench testa se LLMs conseguem projetar sua própria infraestrutura",
-    "summary": "O Φ-Bench avalia se modelos de linguagem conseguem resolver tarefas abertas de engenharia de infraestrutura — de completar kernels até otimizar sistemas ponta a ponta — em vez de problemas isolados e pré-definidos. Os resultados mostram capacidade real, mas ainda limitada, para otimização autônoma da própria pilha de IA.",
+    "title": "A2A v1.0 com mais de 150 organizações",
+    "summary": "O protocolo Agent-to-Agent atingiu a versão 1.0 e segue ganhando adesão de fornecedores, tornando a interoperabilidade entre frameworks viável em produção.",
+    "source": "Harness Router",
+    "url": "https://harnessrouter.ai/blog/ai-agent-protocols-2026"
+  },
+  {
+    "cat": "padroes",
+    "date": "2026-09-20",
+    "hot": false,
+    "title": "MCP passa de 110M de downloads mensais",
+    "summary": "O ecossistema MCP cresceu para mais de 110 milhões de downloads por mês, confirmando-o como padrão de fato para integrar ferramentas a agentes.",
+    "source": "Data Lakehouse Hub",
+    "url": "https://datalakehousehub.com/blog/state-of-agentic-ai-standards-2026/"
+  },
+  {
+    "cat": "padroes",
+    "date": "2026-09-18",
+    "hot": false,
+    "title": "A2ABreak: análise de segurança do A2A",
+    "summary": "Novo artigo faz uma análise sistemática de ataques ao protocolo A2A, alertando para riscos em comunicação entre agentes.",
     "source": "arXiv",
-    "url": "https://arxiv.org/abs/2609.10226"
+    "url": "https://arxiv.org/pdf/2609.10871"
+  },
+  {
+    "cat": "padroes",
+    "date": "2026-08-05",
+    "hot": false,
+    "title": "Da checagem por ação à garantia de trajetória",
+    "summary": "Proposta de segurança para agentes que avalia a trajetória inteira de ações, não cada chamada isolada.",
+    "source": "arXiv",
+    "url": "https://arxiv.org/pdf/2608.01558"
   },
   {
     "cat": "dados",
-    "date": "2026-09-18",
+    "date": "2026-09-25",
     "hot": true,
-    "title": "Big techs vão investir até US$ 690 bi em infraestrutura de IA em 2026",
-    "summary": "Amazon, Alphabet, Microsoft, Meta e Oracle somados devem gastar entre US$ 660 e 690 bilhões em 2026, quase dobrando o valor de 2025. Enquanto isso, a receita combinada de OpenAI e Anthropic gira em torno de US$ 29 bilhões — uma lacuna que analistas apontam como o principal risco de execução do setor.",
-    "source": "Futurum Group",
-    "url": "https://futurumgroup.com/insights/ai-capex-2026-the-690b-infrastructure-sprint/"
+    "title": "AgentWorld: colaboração multiagente de longo prazo",
+    "summary": "Benchmark novo (COLM 2026) mede como grupos de agentes LLM colaboram em tarefas de longo horizonte.",
+    "source": "DailyArXiv",
+    "url": "https://github.com/zachysun/DailyArXiv/issues/568"
   },
   {
     "cat": "dados",
-    "date": "2026-09-15",
+    "date": "2026-09-29",
     "hot": false,
-    "title": "MIT Technology Review questiona a sustentabilidade do boom de infraestrutura",
-    "summary": "Uma análise da MIT Technology Review examina se a demanda e a receita de IA vão crescer rápido o suficiente para justificar o ritmo atual de investimento em datacenters, apontando os próximos 18 a 36 meses como o período decisivo para a tese.",
-    "source": "MIT Technology Review",
-    "url": "https://www.technologyreview.com/2026/09/15/1144028/ai-infrastructure-boom-investment-bubble-risk/"
+    "title": "Mapeando o design de benchmarks de LLM",
+    "summary": "Estudo analisa o que benchmarks realmente medem e onde há lacunas de avaliação.",
+    "source": "arXiv",
+    "url": "https://arxiv.org/pdf/2609.19182"
   },
   {
     "cat": "dados",
-    "date": "2026-09-14",
+    "date": "2026-09-25",
     "hot": false,
-    "title": "PwC projeta US$ 31,6 trilhões em investimento de IA até 2050",
-    "summary": "Um novo relatório da PwC estima que o investimento global acumulado em infraestrutura de IA pode chegar a US$ 31,6 trilhões até 2050, reforçando a leitura de que o ciclo atual de capex é apenas o início de um movimento de décadas, não um pico isolado.",
-    "source": "PwC",
-    "url": "https://www.pwc.com/gx/en/news-room/press-releases/2026/global-investment-in-ai-infrastructure.html"
+    "title": "PriceBench para agentes de reserva",
+    "summary": "Benchmark diagnóstico avalia vieses de preço, qualidade e marca em agentes LLM que fazem reservas.",
+    "source": "DailyArXiv",
+    "url": "https://github.com/zachysun/DailyArXiv/issues/568"
   },
   {
     "cat": "dados",
-    "date": "2026-09-18",
+    "date": "2026-09-30",
     "hot": false,
-    "title": "A lacuna entre capex e receita de IA fica mais visível",
-    "summary": "Dados consolidados mostram OpenAI com ARR de cerca de US$ 20 bilhões e Anthropic com run rate de US$ 9 bilhões — juntos, menos de 3% do capex anual só dos cinco maiores hyperscalers americanos, um contraste que alimenta o debate sobre bolha de IA.",
-    "source": "Futurum Group",
-    "url": "https://futurumgroup.com/insights/ai-capex-2026-the-690b-infrastructure-sprint/"
+    "title": "486 avaliações ranqueadas",
+    "summary": "Agregador compara centenas de benchmarks de LLM, útil para escolher modelos por tarefa.",
+    "source": "BenchLM",
+    "url": "https://benchlm.ai/benchmarks"
   },
   {
     "cat": "ferramentas",
-    "date": "2026-09-19",
+    "date": "2026-09-29",
     "hot": true,
-    "title": "Claude Code muda cobrança do auto mode para classificador no servidor",
-    "summary": "Na versão 2.1.278, o Claude Code passou a usar por padrão um classificador server-side para decidir o modelo do auto mode em contas API, Enterprise e gateways (Bedrock/Vertex/Foundry), eliminando a sobrecarga de custo do classificador anterior. O `/status` agora mostra onde o classificador está rodando.",
-    "source": "Claude Code Changelog",
-    "url": "https://code.claude.com/docs/en/changelog"
+    "title": "Claude Code 2.1.285 com Sonnet 5.5 padrão",
+    "summary": "A versão 2.1.284 passou a usar o Sonnet 5.5 por padrão; a 2.1.282 trouxe controles de política, retomada de sessão mais rápida e correções em MCP e agentes em segundo plano.",
+    "source": "Releasebot",
+    "url": "https://releasebot.io/updates/anthropic/claude-code"
   },
   {
     "cat": "ferramentas",
-    "date": "2026-09-11",
+    "date": "2026-09-03",
     "hot": false,
-    "title": "Claude Code ganha `claude plugin eval` para testar plugins",
-    "summary": "A versão 2.1.269 introduziu um comando dedicado para pontuar plugins e gerar resultados de teste reproduzíveis, além do comando `/output-style` para listar e trocar estilos de saída e diffs de arquivo direto nos resultados da ferramenta Bash.",
-    "source": "Claude Code Changelog",
-    "url": "https://code.claude.com/docs/en/changelog"
+    "title": "Claude Code remove limite de 1h em comandos de subagentes",
+    "summary": "Comandos em background iniciados por subagentes agora rodam até terminar, igualando o comportamento da sessão principal.",
+    "source": "Stationx",
+    "url": "https://app.stationx.net/articles/claude-code-september-2026"
   },
   {
     "cat": "ferramentas",
-    "date": "2026-09-10",
-    "hot": false,
-    "title": "Claude Code adiciona ícones de aba para artifacts publicados",
-    "summary": "A versão 2.1.268 trouxe ícones de navegador personalizados para artifacts publicados, configuração de preços para gateways corporativos via `gateway.yaml`, e corrigiu uma regressão crítica que afetava endpoints de terceiros na ferramenta de artifacts.",
-    "source": "Claude Code Changelog",
-    "url": "https://code.claude.com/docs/en/changelog"
+    "date": "2026-09-25",
+    "hot": true,
+    "title": "Codex 0.159 e /import de Cursor e Claude Code",
+    "summary": "O Codex ganhou interrupção instantânea e melhor renderização de Mermaid, e o /import migra configurações, MCPs, plugins e memórias de Cursor e Claude Code.",
+    "source": "Releasebot",
+    "url": "https://releasebot.io/updates/openai/codex"
   },
   {
     "cat": "ferramentas",
-    "date": "2026-09-14",
+    "date": "2026-09-28",
     "hot": false,
-    "title": "Claude Code Remote ganha modo rápido e domínios permitidos por comando",
-    "summary": "A versão 2.1.271 adicionou um 'fast mode' para sessões remotas, suporte a mouse no painel `/config` em tela cheia, e a possibilidade de restringir domínios permitidos por comando individual no Bash, PowerShell e Monitor em auto mode.",
-    "source": "Claude Code Changelog",
-    "url": "https://code.claude.com/docs/en/changelog"
-  },
-  {
-    "cat": "ferramentas",
-    "date": "2026-09-04",
-    "hot": false,
-    "title": "Codex e ChatGPT recebem o upgrade do GPT-6 Astra",
-    "summary": "Junto do lançamento do modelo, a OpenAI atualizou o Codex e o ChatGPT com o GPT-6 Astra, prometendo código com menos iterações e explicações mais claras das mudanças técnicas para quem revisa o trabalho do agente.",
-    "source": "9to5Mac",
-    "url": "https://9to5mac.com/2026/09/04/openai-releasing-major-upgrade-to-chatgpt-and-codex-with-gpt-6-astra-details-here/"
+    "title": "Codex CLI 0.159.2",
+    "summary": "Correção do piscar de janelas de console no Windows ao lançar processos em background.",
+    "source": "Gradually",
+    "url": "https://www.gradually.ai/en/changelogs/codex-cli/"
   }
 ];
 
